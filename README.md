@@ -1,15 +1,13 @@
 
----
-
 # 🔐 IPFS-Powered Certificate Generator with Kafka Events
 
 A **Spring Boot** based certificate generation system that:
 
-* Generates certificate PDFs
-* Uploads them to **IPFS via Pinata**
-* Generates QR codes linked to the PDF
-* Publishes a **Kafka Event** to notify listeners
-* Persists metadata in PostgreSQL
+* Generates certificate PDFs  
+* Uploads them to **IPFS via Pinata**  
+* Generates QR codes linked to the PDF  
+* Publishes a **Kafka Event** to notify listeners  
+* Persists metadata in PostgreSQL  
 
 > 🎯 Designed for transparency, decentralization, and event-driven systems.
 
@@ -17,12 +15,12 @@ A **Spring Boot** based certificate generation system that:
 
 ## 🚀 Features
 
-* 📄 PDF Certificate Generation
-* 🔗 IPFS File Storage via **Pinata**
-* 📷 QR Code for Verification
-* 📬 Kafka Event Publishing
-* 🗃 Metadata Storage in PostgreSQL
-* 📡 RESTful API for issuing & verifying certificates
+* 📄 PDF Certificate Generation  
+* 🔗 IPFS File Storage via **Pinata**  
+* 📷 QR Code for Verification  
+* 📬 Kafka Event Publishing  
+* 🗃 Metadata Storage in PostgreSQL  
+* 📡 RESTful API for issuing & verifying certificates  
 
 ---
 
@@ -71,7 +69,7 @@ A **Spring Boot** based certificate generation system that:
                     |
                     v
            Kafka Topic: `certificate-events`
-```
+````
 
 ---
 
@@ -136,23 +134,36 @@ sequenceDiagram
 
 ---
 
-## 📝 Sample Response
+## 📥 Sample Request
 
 ```json
 {
-  "id": 1,
   "name": "Karan Sahani",
-  "course": "Spring Boot & Kafka",
-  "issuedBy": "CodeWithKaran Academy",
-  "issueDate": "2025-07-14",
-  "ipfsUrl": "https://ipfs.io/ipfs/QmWFHU4gWNV7eUA2J9t1545grchV7rn8vgyCqeaLTnqpfz",
-  "qrCodeUrl": "https://ipfs.io/ipfs/QmboSk8mXAByVrS1gvzuvP9YsigjNrFQ7CemgRYPiWa7wg",
-  "issuedAt": "2025-07-15T00:05:58.054056"
+  "course": "Java Spring Boot Backend Development",
+  "issuedBy": "Noida International University",
+  "date": "2025-07-14"
 }
 ```
 
-* 📄 [View PDF](https://ipfs.io/ipfs/QmWFHU4gWNV7eUA2J9t1545grchV7rn8vgyCqeaLTnqpfz)
-* 📷 [View QR Code](https://ipfs.io/ipfs/QmboSk8mXAByVrS1gvzuvP9YsigjNrFQ7CemgRYPiWa7wg)
+---
+
+## 📤 Sample Response
+
+```json
+{
+  "id": 3,
+  "name": "Karan Sahani",
+  "course": "Java Spring Boot Backend Development",
+  "issuedBy": "Noida International University",
+  "issueDate": "2025-07-14",
+  "ipfsUrl": "https://ipfs.io/ipfs/QmTBWvcn2d2pGCK6nvxrBNsyueqxu1hnDiyrYaXvtTdj1N",
+  "qrCodeUrl": "https://ipfs.io/ipfs/Qme8eYPZtTcbyfUHN9bPjXRTprWSFeaQXJq3JBm8Kbjpow",
+  "issuedAt": "2025-07-15T00:47:39.555951"
+}
+```
+
+* 📄 [View PDF](https://ipfs.io/ipfs/QmTBWvcn2d2pGCK6nvxrBNsyueqxu1hnDiyrYaXvtTdj1N)
+* 📷 [View QR Code](https://ipfs.io/ipfs/Qme8eYPZtTcbyfUHN9bPjXRTprWSFeaQXJq3JBm8Kbjpow)
 
 ---
 
@@ -160,11 +171,11 @@ sequenceDiagram
 
 ```json
 {
-  "certificateId": "random-uuid",
+  "certificateId": "3",
   "name": "Karan Sahani",
-  "course": "Spring Boot & Kafka",
-  "ipfsUrl": "...",
-  "qrCodeUrl": "..."
+  "course": "Java Spring Boot Backend Development",
+  "ipfsUrl": "https://ipfs.io/ipfs/QmTBWvcn2d2pGCK6nvxrBNsyueqxu1hnDiyrYaXvtTdj1N",
+  "qrCodeUrl": "https://ipfs.io/ipfs/Qme8eYPZtTcbyfUHN9bPjXRTprWSFeaQXJq3JBm8Kbjpow"
 }
 ```
 
@@ -181,12 +192,18 @@ This clearly highlights all major tech used.
 ## 📤 Deployment Instructions
 
 1. Clone the repo
-2. Set environment variables or update `application.properties`:
+
+```bash
+git clone https://github.com/karansahani78/ipfs-pinata-kafka-certificate-generator.git
+cd ipfs-pinata-kafka-certificate-generator
+```
+
+2. Set your environment variables in `application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/certificate_db
-spring.datasource.username=${USRENAME}
-spring.datasource.password=${PASSWORD}
+spring.datasource.username=your_db_username
+spring.datasource.password=your_db_password
 
 pinata.api.key=your_pinata_api_key
 pinata.secret.key=your_pinata_secret_key
@@ -194,7 +211,9 @@ pinata.secret.key=your_pinata_secret_key
 spring.kafka.bootstrap-servers=localhost:9092
 ```
 
-3. Run Kafka, PostgreSQL, then:
+3. Run Kafka and PostgreSQL
+
+4. Start your Spring Boot app
 
 ```bash
 ./mvnw clean install
@@ -208,7 +227,3 @@ spring.kafka.bootstrap-servers=localhost:9092
 **Karan Sahani**
 [GitHub](https://github.com/karansahani78) • [LinkedIn](https://www.linkedin.com/in/karan-sahani-70a0ba2b1/)
 Java Spring Boot Backend Developer | Blockchain Enthusiast
-
----
-
-Would you like me to also generate a **visual PNG architecture diagram** you can upload to the repo?
