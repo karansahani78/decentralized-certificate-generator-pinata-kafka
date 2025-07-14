@@ -1,4 +1,5 @@
 package com.karan.online.certificate.generator.service;
+
 import com.karan.online.certificate.generator.model.CertificateRequest;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
@@ -9,7 +10,7 @@ import java.io.ByteArrayOutputStream;
 @Service
 public class PDFGeneratorService {
 
-    public byte[] generateCertificatePDF(CertificateRequest request, Long certId) throws Exception {
+    public byte[] generateCertificatePDF(CertificateRequest request, String certId) throws Exception {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         Document document = new Document(PageSize.A4);
@@ -34,4 +35,3 @@ public class PDFGeneratorService {
         return out.toByteArray();
     }
 }
-

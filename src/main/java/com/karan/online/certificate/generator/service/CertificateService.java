@@ -40,7 +40,7 @@ public class CertificateService {
         String certificateId = UUID.randomUUID().toString();
 
         // Step 1: Generate certificate PDF
-        byte[] pdfBytes = pdfGenerator.generateCertificatePDF(request, null);
+        byte[] pdfBytes = pdfGenerator.generateCertificatePDF(request,certificateId);
 
         // Step 2: Upload PDF to IPFS via Pinata
         String ipfsPdfUrl = pinataService.uploadToIPFS(pdfBytes, certificateId + ".pdf");
